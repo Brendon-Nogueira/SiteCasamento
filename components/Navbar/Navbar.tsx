@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const NAV_LINKS = [
   { href: "#inicio", label: "Início" },
@@ -45,9 +46,30 @@ export default function Navbar() {
   return (
     <>
       <nav className={`navbar ${isScrolled ? "scrolled" : "hidden-on-top"}`} id="navbar">
-        <span className="navbar-logo" style={{ opacity: isScrolled ? 1 : 0, transition: "opacity 0.3s ease" }}>
-          F & B
-        </span>
+        <div 
+          className="navbar-logo" 
+          style={{ 
+            opacity: isScrolled ? 1 : 0, 
+            transition: "opacity 0.3s ease",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px"
+          }}
+        >
+          {/* Logo redonda da F&B na Navbar */}
+          <div style={{ position: "relative", width: "42px", height: "42px", borderRadius: "50%", overflow: "hidden", background: "#fff", boxShadow: "0 2px 6px rgba(0,0,0,0.1)" }}>
+            <Image
+              src="/images/logo.png"
+              alt="Logo F&B"
+              fill
+              sizes="42px"
+              style={{ objectFit: "cover", borderRadius: "50%" }}
+            />
+          </div>
+          {/* <span style={{ fontSize: "1.1rem", fontFamily: "var(--font-display)", fontWeight: 600, color: "#512c16" }}>
+            F & B
+          </span> */}
+        </div>
         
         {/* O botão hambúrguer só fica interativo e visível a partir do scroll */}
         <button

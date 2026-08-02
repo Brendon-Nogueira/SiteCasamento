@@ -7,7 +7,6 @@ export default function Hero() {
       <div className="hero-image-wrapper">
         <Image
           src="/images/hero.jpg"
-          //src="/images/hero2.png"
           alt="Franciele e Brendon"
           fill
           priority
@@ -17,33 +16,6 @@ export default function Hero() {
       </div>
       <div className="hero-overlay" />
       <div className="hero-content">
-        {/* Logo oficial do Canva */}
-        <div className="hero-logo-container" style={{ marginBottom: "1rem", display: "flex", justifyContent: "center" }}>
-          <div style={{ 
-            position: "relative", 
-            width: "160px", 
-            height: "160px",
-            background: "#ffffff", // Fundo branco sólido para a logo
-            borderRadius: "50%",
-            boxShadow: "0 4px 15px rgba(0,0,0,0.15)",
-            overflow: "hidden", // Corta as pontas quadradas da imagem
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
-          }}>
-            <Image
-              src="/images/logo.png"
-              alt="Logo Franciele e Brendon"
-              fill
-              style={{
-                objectFit: "cover", // Garante que a imagem preencha o círculo sem distorcer e sem mostrar cantos brancos
-                borderRadius: "50%",
-              }}
-              priority
-            />
-          </div>
-        </div>
-
         <h1 className="hero-names">
           Franciele <span className="hero-ampersand">&amp;</span> Brendon
         </h1>

@@ -3,23 +3,27 @@
    Franciele & Brendon
    =================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Alex+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Pinyon+Script&display=swap');
 
 /* ---- CSS Variables ---- */
 :root {
   --color-cream: #F9FAF7;
-  --color-green: #5B8C5A;
-  --color-green-light: #7FB87E;
-  --color-green-dark: #3D6B3D;
+  --color-green: #6B1D2F; /* Substituído pelo Bordô */
+  --color-green-light: #8C2D43; /* Bordô claro para hover */
+  --color-green-dark: #512c16; /* Marrom escuro */
   --color-dark: #2C2C2C;
   --color-dark-light: #4A4A4A;
-  --color-sage: #8E9E85;
+  --color-sage: #512c16; /* Trocado pelo Marrom para menus/detalhes */
   --color-sage-light: #B5C4AD;
   --color-blush: #E8EDE5;
   --color-blush-light: #F0F4ED;
   --color-white: #FFFFFF;
   --color-overlay: rgba(44, 44, 44, 0.55);
   --color-border: #D4DED0;
+  
+  --color-brown: #512c16;
+  --color-bordeaux: #6B1D2F;
+  --color-bordeaux-light: #8C2D43;
 
   --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body: 'Lato', 'Helvetica Neue', Arial, sans-serif;
@@ -63,7 +67,12 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 500;
   line-height: 1.3;
@@ -87,7 +96,9 @@ button {
   outline: none;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   font-family: var(--font-body);
   outline: none;
 }
@@ -132,7 +143,8 @@ input, select, textarea {
 
 .navbar.hidden-on-top {
   background-color: transparent;
-  pointer-events: none; /* Não bloqueia cliques na página inicial */
+  pointer-events: none;
+  /* Não bloqueia cliques na página inicial */
 }
 
 .navbar.scrolled {
@@ -212,7 +224,8 @@ input, select, textarea {
   transition: right var(--transition-slow);
   box-shadow: -4px 0 30px rgba(0, 0, 0, 0.1);
   z-index: 1050;
-  visibility: hidden; /* Oculta totalmente quando fechado */
+  visibility: hidden;
+  /* Oculta totalmente quando fechado */
 }
 
 .navbar-menu.open {
@@ -302,12 +315,10 @@ input, select, textarea {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.35) 50%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, 0.35) 50%,
+      rgba(0, 0, 0, 0.5) 100%);
   z-index: 1;
 }
 
@@ -320,18 +331,21 @@ input, select, textarea {
 }
 
 .hero-names {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(3.5rem, 9.5vw, 6.5rem);
   font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero-ampersand {
+  font-family: var(--font-display);
   font-style: italic;
-  color: var(--color-green-light);
-  margin: 0 0.3rem;
+  color: #512c16;
+  /* Marrom */
+  margin: 0 0.8rem;
+  font-size: 0.8em;
 }
 
 .hero-subtitle {
@@ -365,8 +379,15 @@ input, select, textarea {
 }
 
 @keyframes bounceDown {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(8px); }
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(8px);
+  }
 }
 
 /* ---- Section Base ---- */
@@ -382,13 +403,14 @@ input, select, textarea {
   font-weight: 500;
   text-align: center;
   margin-bottom: 1rem;
-  color: var(--color-dark);
+  color: #512c16;
+  /* Marrom */
 }
 
 .section-divider {
   width: 60px;
   height: 1px;
-  background-color: var(--color-green);
+  background-color: var(--color-brown);
   margin: 0 auto 2rem;
 }
 
@@ -571,7 +593,7 @@ input, select, textarea {
 .countdown-box {
   width: 85px;
   height: 95px;
-  background: var(--color-dark);
+  background: #512c16;
   color: var(--color-white);
   border-radius: var(--radius-md);
   display: flex;
@@ -697,8 +719,13 @@ input, select, textarea {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-content {
@@ -714,8 +741,15 @@ input, select, textarea {
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal-close {
@@ -1075,8 +1109,15 @@ input, select, textarea {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
 }
 
 .footer-message {
@@ -1421,4 +1462,3 @@ input, select, textarea {
   border-radius: var(--radius-sm);
   font-weight: bold;
 }
-

@@ -176,7 +176,7 @@ export default function GiftList() {
               <div className="gift-card-body">
                 <h3 className="gift-card-name">{gift.name}</h3>
                 {gift.description && (
-                  <p style={{ fontSize: "0.85rem", color: "#666", marginBottom: "0.8rem", height: "36px", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  <p style={{ fontSize: "0.85rem", color: "#666", marginBottom: "0.8rem", minHeight: "36px" }}>
                     {gift.description}
                   </p>
                 )}
