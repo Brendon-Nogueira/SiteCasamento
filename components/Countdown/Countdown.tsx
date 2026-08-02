@@ -68,15 +68,15 @@ export default function Countdown() {
 
       <p style={{ 
         fontFamily: "'Pinyon Script', cursive", 
-        fontSize: "2.8rem", 
+        fontSize: "3.2rem", 
         color: "#512c16", 
         textAlign: "center",
         marginBottom: "0.2rem"
       }}>
-        Franciele &amp; Brendon
+        Franciele <span style={{ fontFamily: "var(--font-display, 'Playfair Display', serif)", fontStyle: "italic", fontSize: "0.85em", margin: "0 0.3rem" }}>&amp;</span> Brendon
       </p>
 
-      <h2 className="section-title">Nossa Data</h2>
+      <h2 className="section-title" style={{ fontFamily: "'Lato', sans-serif", fontSize: "1.1rem", fontWeight: 300, letterSpacing: "6px", textTransform: "uppercase", color: "#512c16" }}>Nossa Data</h2>
       <div className="section-divider" />
       <p className="countdown-date-text">22/05/2027 – 17:00</p>
 

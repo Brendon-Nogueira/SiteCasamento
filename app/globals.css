@@ -345,9 +345,8 @@ textarea {
   font-family: var(--font-display);
   font-style: italic;
   color: #512c16;
-  /* Marrom */
-  margin: 0 0.8rem;
-  font-size: 0.8em;
+  margin: 0 0.6rem;
+  font-size: 0.85em;
 }
 
 .hero-subtitle {
@@ -595,8 +594,8 @@ textarea {
 .countdown-box {
   width: 85px;
   height: 95px;
-  background: #512c16;
-  color: var(--color-white);
+  background: #e5c58f;
+  color: #512c16;
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
@@ -604,6 +603,7 @@ textarea {
   justify-content: center;
   gap: 0.2rem;
   transition: transform var(--transition-base), box-shadow var(--transition-base);
+  box-shadow: 0 4px 15px rgba(229, 197, 143, 0.3);
 }
 
 .countdown-box:hover {
@@ -616,13 +616,15 @@ textarea {
   font-size: 2rem;
   font-weight: 600;
   line-height: 1;
+  color: #512c16;
 }
 
 .countdown-label {
   font-size: 0.65rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  opacity: 0.8;
+  color: #512c16;
+  opacity: 0.9;
   font-weight: 700;
 }
 
