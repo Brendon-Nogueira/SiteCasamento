@@ -22,7 +22,7 @@ export default function Hero() {
         <p className="hero-subtitle">O grande dia está chegando!</p>
       </div>
       <div className="hero-scroll-indicator">
-        <span>Scroll</span>
+        {/* <span>Scroll</span> */}
         <ChevronDown size={20} color="rgba(255,255,255,0.7)" />
       </div>
     </section>

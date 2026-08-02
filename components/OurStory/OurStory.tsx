@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function OurStory() {
   return (
     <section className="section our-story" id="nossa-historia">
@@ -22,7 +24,7 @@ export default function OurStory() {
       <h2 className="section-title">Nossa História Continua</h2>
       <div className="section-divider" />
 
-      <p className="our-story-verse">
+      <p className="our-story-text">
         &ldquo;Foi o Senhor que fez isso, e é maravilhoso aos nossos
         olhos.&rdquo; (Salmo 118,23)
       </p>
@@ -49,6 +51,18 @@ export default function OurStory() {
       <p className="our-story-signature">
         Com carinho, Franciele & Brendon 💜💍
       </p>
+
+      <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}>
+        <div style={{ position: "relative", width: "100%", maxWidth: "320px", height: "320px" }}>
+          <Image
+            src="/images/casal.png"
+            alt="Franciele e Brendon - Ilustração"
+            fill
+            style={{ objectFit: "contain" }}
+            sizes="(max-width: 768px) 280px, 320px"
+          />
+        </div>
+      </div>
     </section>
   );
 }

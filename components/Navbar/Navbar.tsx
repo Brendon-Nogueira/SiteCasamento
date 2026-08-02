@@ -57,13 +57,13 @@ export default function Navbar() {
           }}
         >
           {/* Logo redonda da F&B na Navbar */}
-          <div style={{ position: "relative", width: "42px", height: "42px", borderRadius: "50%", overflow: "hidden", background: "#fff", boxShadow: "0 2px 6px rgba(0,0,0,0.1)" }}>
+          <div style={{ position: "relative", width: "48px", height: "48px" }}>
             <Image
               src="/images/logo.png"
               alt="Logo F&B"
               fill
-              sizes="42px"
-              style={{ objectFit: "cover", borderRadius: "50%" }}
+              sizes="48px"
+              style={{ objectFit: "contain" }}
             />
           </div>
           {/* <span style={{ fontSize: "1.1rem", fontFamily: "var(--font-display)", fontWeight: 600, color: "#512c16" }}>

@@ -43,7 +43,9 @@ export default function Venue() {
 
   return (
     <section className="section venue" id="local">
-      <h2 className="section-title">Cerimônia &amp; Recepção</h2>
+      <h2 className="section-title" style={{ fontFamily: "'Pinyon Script', cursive", fontSize: " clamp(2.8rem, 6vw, 3.8rem)", fontWeight: 400 }}>
+        Cerimônia &amp; Recepção
+      </h2>
       <div className="section-divider" />
 
       <div className="venue-cards">
