@@ -49,7 +49,7 @@ export default function OurStory() {
       </div>
 
       <p className="our-story-signature">
-        Com carinho, Franciele & Brendon 💜💍
+        Com carinho, Franciele & Brendon 
       </p>
 
       <div style={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}>

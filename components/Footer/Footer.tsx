@@ -3,9 +3,12 @@ export default function Footer() {
     <footer className="footer">
       <p className="footer-names">Franciele <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "0.8em" }}>&amp;</span> Brendon</p>
       <p className="footer-date">22 de Maio de 2027</p>
-      <p className="footer-heart">💍</p>
+      {/* <p className="footer-heart">💍</p> */}
       <p className="footer-message">
         Feito com amor para o nosso grande dia ✨
+      </p>
+      <p style={{ fontSize: "0.75rem", opacity: 0.6, marginTop: "1rem" }}>
+        Desenvolvido por Brendon
       </p>
     </footer>
   );
