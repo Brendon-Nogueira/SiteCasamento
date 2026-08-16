@@ -594,7 +594,8 @@ textarea {
 .countdown-box {
   width: 85px;
   height: 95px;
-  background: #e5c58f;
+  /* background: #e5c58f;  */
+  background: #F7ECDD;
   color: #512c16;
   border-radius: var(--radius-md);
   display: flex;
@@ -646,6 +647,9 @@ textarea {
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-base), box-shadow var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .gift-card:hover {
@@ -672,6 +676,10 @@ textarea {
 .gift-card-body {
   padding: 1.2rem 1.5rem 1.5rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .gift-card-name {
@@ -681,18 +689,30 @@ textarea {
   color: var(--color-dark);
 }
 
+.gift-card-description {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.8rem;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.35;
+}
+
 .gift-card-price {
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-green);
   margin-bottom: 1rem;
+  margin-top: auto;
 }
 
 .gift-card-btn {
   display: inline-block;
   width: 100%;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, var(--color-green) 0%, var(--color-green-light) 100%);
+  background: linear-gradient(135deg, var(--color-brown) 0%, var(--color-brown) 100%);
   color: var(--color-white);
   font-size: 0.8rem;
   letter-spacing: 1.5px;
@@ -1468,4 +1488,48 @@ textarea {
   color: white;
   border-radius: var(--radius-sm);
   font-weight: bold;
+}
+
+/* GRID 2X2 */
+@media (max-width: 767px) {
+  .gift-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .gift-card-image-wrapper {
+    height: 120px !important;
+  }
+
+  .gift-card-body {
+    padding: 0.8rem 0.5rem 0.9rem;
+  }
+
+  .gift-card-name {
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
+  }
+
+  .gift-card-description {
+    font-size: 0.75rem;
+    min-height: 2.2rem;
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+  }
+
+  .gift-card-price {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .gift-card-btn {
+    padding: 0.55rem 0.4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  .gift-sort-container {
+    justify-content: center !important;
+  }
 }

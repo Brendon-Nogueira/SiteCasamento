@@ -39,7 +39,7 @@ export default function Venue() {
   const ceremonyAddress =
     "Rod. Antônio Simões de Almeida, 83, Paraisópolis - MG, 37660-000, Brasil";
   const ceremonyMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Igreja Santa Edwiges, " + ceremonyAddress)}`;
-  const receptionMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Clube Aptiv Paraisópolis MG")}`;
+  const receptionMapsUrl = "https://www.google.com/maps/place/APAE/@-22.5443869,-45.798097,3636m/data=!3m1!1e3!4m10!1m2!2m1!1ssal%C3%A3o+de+festas+apae+paraisopolis+mg!3m6!1s0x94cb890050aec1af:0x5dbc14a524f3a3f2!8m2!3d-22.5443869!4d-45.7790426!15sCiVzYWzDo28gZGUgZmVzdGFzIGFwYWUgcGFyYWlzb3BvbGlzIG1nkgEQc3BlY2lhbF9lZHVjYXRvcuABAA!16s%2Fg%2F11x76z0ylj?entry=ttu";
 
   return (
     <section className="section venue" id="local">
@@ -81,7 +81,7 @@ export default function Venue() {
           <div className="venue-icon">
             <PartyIcon />
           </div>
-          <h3>Clube – Aptiv</h3>
+          <h3>Salão de Festas APAE</h3>
           <p className="venue-type">Recepção</p>
           <p className="venue-date">
             <strong>22/05/2027</strong> às <strong>18:30</strong>

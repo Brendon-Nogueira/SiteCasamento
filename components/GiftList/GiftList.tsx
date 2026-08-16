@@ -119,10 +119,13 @@ function PixModal({
   );
 }
 
+import { ArrowUpDown } from "lucide-react";
+
 export default function GiftList() {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
+  const [sortOrder, setSortOrder] = useState<"price-asc" | "price-desc" | "default">("price-asc");
 
   useEffect(() => {
     async function loadGifts() {
@@ -141,6 +144,12 @@ export default function GiftList() {
     loadGifts();
   }, []);
 
+  const sortedGifts = [...gifts].sort((a, b) => {
+    if (sortOrder === "price-asc") return a.price - b.price;
+    if (sortOrder === "price-desc") return b.price - a.price;
+    return 0;
+  });
+
   const defaultImage = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%238E9E85' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='3' rx='2' ry='2'/><circle cx='9' cy='9' r='2'/><path d='m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21'/></svg>";
 
   return (
@@ -152,6 +161,33 @@ export default function GiftList() {
         escolha um presente especial.
       </p>
 
+      {!loading && gifts.length > 0 && (
+        <div className="gift-sort-container" style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginBottom: "1.5rem", gap: "0.5rem" }}>
+          <label htmlFor="sortGifts" style={{ fontSize: "0.85rem", color: "#512c16", fontWeight: 600, display: "flex", alignItems: "center", gap: "4px" }}>
+            <ArrowUpDown size={14} /> Ordenar:
+          </label>
+          <select
+            id="sortGifts"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value as any)}
+            style={{
+              padding: "0.4rem 0.8rem",
+              borderRadius: "20px",
+              border: "1px solid #d4ded0",
+              background: "#fff",
+              color: "#512c16",
+              fontSize: "0.85rem",
+              cursor: "pointer",
+              outline: "none"
+            }}
+          >
+            <option value="price-asc">Menor Preço</option>
+            <option value="price-desc">Maior Preço</option>
+            <option value="default">Padrão</option>
+          </select>
+        </div>
+      )}
+
       {loading ? (
         <div style={{ textAlign: "center", padding: "3rem" }}>
           <p>Carregando presentes...</p>
@@ -162,7 +198,7 @@ export default function GiftList() {
         </div>
       ) : (
         <div className="gift-grid">
-          {gifts.map((gift) => (
+          {sortedGifts.map((gift) => (
             <div key={gift.id} className="gift-card" style={{ opacity: 1, animation: "fadeIn 0.5s ease-in-out" }}>
               <div className="gift-card-image-wrapper" style={{ position: "relative", width: "100%", height: "200px", background: "#f0f0f0" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -174,21 +210,23 @@ export default function GiftList() {
                 />
               </div>
               <div className="gift-card-body">
-                <h3 className="gift-card-name">{gift.name}</h3>
-                {gift.description && (
-                  <p style={{ fontSize: "0.85rem", color: "#666", marginBottom: "0.8rem", minHeight: "36px" }}>
-                    {gift.description}
+                <div>
+                  <h3 className="gift-card-name">{gift.name}</h3>
+                  <p className="gift-card-description">
+                    {gift.description || ""}
                   </p>
-                )}
-                <p className="gift-card-price">
-                  R$ {gift.price.toFixed(2).replace(".", ",")}
-                </p>
-                <button
-                  className="gift-card-btn"
-                  onClick={() => setSelectedGift(gift)}
-                >
-                  Presentear
-                </button>
+                </div>
+                <div>
+                  <p className="gift-card-price">
+                    R$ {gift.price.toFixed(2).replace(".", ",")}
+                  </p>
+                  <button
+                    className="gift-card-btn"
+                    onClick={() => setSelectedGift(gift)}
+                  >
+                    Presentear
+                  </button>
+                </div>
               </div>
             </div>
           ))}
