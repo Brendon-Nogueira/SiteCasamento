@@ -15,6 +15,7 @@ model Guest {
   confirmed    Boolean  @default(false)
   qtd_adultos  Int      @default(1)
   qtd_criancas Int      @default(0)
+  acompanhantes String?
   observacao   String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

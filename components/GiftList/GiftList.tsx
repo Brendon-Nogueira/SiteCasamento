@@ -125,7 +125,7 @@ export default function GiftList() {
   const [gifts, setGifts] = useState<Gift[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedGift, setSelectedGift] = useState<Gift | null>(null);
-  const [sortOrder, setSortOrder] = useState<"price-asc" | "price-desc" | "default">("price-asc");
+  const [sortOrder, setSortOrder] = useState<"price-asc" | "price-desc" | "default">("default");
 
   useEffect(() => {
     async function loadGifts() {

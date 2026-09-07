@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
 // POST - Criar convidado 
 export async function POST(req: NextRequest) {
   try {
-    const { nome, email, whatsapp, confirmed, qtd_adultos, qtd_criancas, observacao } = await req.json();
+    const { nome, email, whatsapp, confirmed, qtd_adultos, qtd_criancas, observacao, acompanhantes } = await req.json();
 
     if (!nome || !whatsapp) {
       return NextResponse.json(
@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
         qtd_adultos: qtd_adultos !== undefined ? Math.min(Number(qtd_adultos), 10) : 1,
         qtd_criancas: qtd_criancas !== undefined ? Number(qtd_criancas) : 0,
         observacao: observacao || null,
+        acompanhantes: acompanhantes || null,
       },
     });
 

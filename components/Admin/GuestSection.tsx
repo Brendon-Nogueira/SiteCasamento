@@ -10,6 +10,7 @@ interface Guest {
   confirmed: boolean;
   qtd_adultos: number;
   qtd_criancas: number;
+  acompanhantes: string | null;
   observacao: string | null;
   createdAt: string;
 }
@@ -31,6 +32,7 @@ export default function GuestSection({ guests, onRefresh }: GuestSectionProps) {
   const [confirmed, setConfirmed] = useState(false);
   const [qtdAdultos, setQtdAdultos] = useState(1);
   const [qtdCriancas, setQtdCriancas] = useState(0);
+  const [acompanhantes, setAcompanhantes] = useState("");
   const [observacao, setObservacao] = useState("");
 
   const filteredGuests = guests.filter((g) =>
@@ -45,6 +47,7 @@ export default function GuestSection({ guests, onRefresh }: GuestSectionProps) {
     setConfirmed(false);
     setQtdAdultos(1);
     setQtdCriancas(0);
+    setAcompanhantes("");
     setObservacao("");
     setModalOpen(true);
   };
@@ -57,6 +60,7 @@ export default function GuestSection({ guests, onRefresh }: GuestSectionProps) {
     setConfirmed(guest.confirmed);
     setQtdAdultos(guest.qtd_adultos || 1);
     setQtdCriancas(guest.qtd_criancas || 0);
+    setAcompanhantes(guest.acompanhantes || "");
     setObservacao(guest.observacao || "");
     setModalOpen(true);
   };
@@ -71,6 +75,7 @@ export default function GuestSection({ guests, onRefresh }: GuestSectionProps) {
       confirmed,
       qtd_adultos: Number(qtdAdultos),
       qtd_criancas: Number(qtdCriancas),
+      acompanhantes: acompanhantes || null,
       observacao: observacao || null,
     };
 
@@ -257,6 +262,19 @@ export default function GuestSection({ guests, onRefresh }: GuestSectionProps) {
                   className="form-input"
                 />
               </div>
+
+              {(qtdAdultos + qtdCriancas > 1) && (
+                <div className="form-group fade-in">
+                  <label>Nomes dos Acompanhantes / Crianças</label>
+                  <textarea
+                    value={acompanhantes}
+                    onChange={(e) => setAcompanhantes(e.target.value)}
+                    className="form-input"
+                    style={{ minHeight: "80px" }}
+                    placeholder="Ex: João da Silva, Mariazinha (Criança)..."
+                  />
+                </div>
+              )}
 
               <div className="form-group">
                 <label>Observação / Restrição Alimentar</label>

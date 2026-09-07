@@ -11,6 +11,7 @@ interface Guest {
   confirmed: boolean;
   qtd_adultos: number;
   qtd_criancas: number;
+  acompanhantes: string | null;
   observacao: string | null;
 }
 
@@ -22,8 +23,6 @@ export default function RSVP() {
   
   // Form states
   const [comparecer, setComparecer] = useState<"sim" | "nao">("sim");
-  const [qtdAdultos, setQtdAdultos] = useState(1);
-  const [qtdCriancas, setQtdCriancas] = useState(0);
   const [observacoes, setObservacoes] = useState("");
   const [notificacoes, setNotificacoes] = useState(true);
   const [termos, setTermos] = useState(false);
@@ -59,34 +58,18 @@ export default function RSVP() {
   const handleSelectGuest = (guest: Guest) => {
     setSelectedGuest(guest);
     setComparecer(guest.confirmed ? "sim" : "sim");
-    setQtdAdultos(guest.qtd_adultos || 1);
-    setQtdCriancas(guest.qtd_criancas || 0);
     setObservacoes(guest.observacao || "");
     setSearchResults([]);
     setSearch("");
   };
 
-  const handleQtdAdultosChange = (val: number) => {
-    // Mantém a soma no limite de 10
-    if (val + qtdCriancas > 10) {
-      setQtdCriancas(10 - val);
-    }
-    setQtdAdultos(val);
-  };
 
-  const handleQtdCriancasChange = (val: number) => {
-    // Mantém a soma no limite de 10
-    if (val + qtdAdultos > 10) {
-      setQtdAdultos(10 - val);
-    }
-    setQtdCriancas(val);
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedGuest) return;
 
-    if (comparecer === "sim" && (qtdAdultos + qtdCriancas > 10)) {
+    if (comparecer === "sim" && (selectedGuest.qtd_adultos + selectedGuest.qtd_criancas > 10)) {
       alert("O limite máximo de confirmação é de 10 pessoas por vez.");
       return;
     }
@@ -99,8 +82,6 @@ export default function RSVP() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           confirmed: comparecer === "sim",
-          qtd_adultos: comparecer === "sim" ? qtdAdultos : 0,
-          qtd_criancas: comparecer === "sim" ? qtdCriancas : 0,
           observacao: observacoes || null,
         }),
       });
@@ -130,8 +111,8 @@ export default function RSVP() {
           <p style={{ color: "var(--color-dark-light)", marginTop: "0.5rem" }}>
             {comparecer === "sim" ? (
               <>
-                Confirmamos a presença de <strong>{qtdAdultos} {qtdAdultos === 1 ? "adulto" : "adultos"}</strong>
-                {qtdCriancas > 0 && <> e <strong>{qtdCriancas} {qtdCriancas === 1 ? "criança" : "crianças"}</strong></>}.
+                Confirmamos a presença de <strong>{selectedGuest.qtd_adultos} {selectedGuest.qtd_adultos === 1 ? "adulto" : "adultos"}</strong>
+                {selectedGuest.qtd_criancas > 0 && <> e <strong>{selectedGuest.qtd_criancas} {selectedGuest.qtd_criancas === 1 ? "criança" : "crianças"}</strong></>}.
                 <br />
                 Estamos muito felizes e ansiosos para comemorar com vocês no dia 22 de Maio de 2027!
               </>
@@ -285,52 +266,28 @@ export default function RSVP() {
           </div>
 
           {comparecer === "sim" && (
-            <>
-              {/* Qtd Adultos */}
-              <div className="form-group">
-                <label htmlFor="rsvp-adultos">
-                  Quantidade de adultos/acompanhantes (incluindo você):
-                </label>
-                <select
-                  id="rsvp-adultos"
-                  name="adultos"
-                  value={qtdAdultos}
-                  onChange={(e) => handleQtdAdultosChange(Number(e.target.value))}
-                  className="form-select"
-                  style={{ width: "100%" }}
-                >
-                  {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-                    <option key={n} value={n}>
-                      {n} {n === 1 ? "adulto" : "adultos"}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Qtd Crianças */}
-              <div className="form-group">
-                <label htmlFor="rsvp-criancas">
-                  Quantidade de crianças (de colo ou até 4 anos):
-                </label>
-                <select
-                  id="rsvp-criancas"
-                  name="criancas"
-                  value={qtdCriancas}
-                  onChange={(e) => handleQtdCriancasChange(Number(e.target.value))}
-                  className="form-select"
-                  style={{ width: "100%" }}
-                >
-                  {Array.from({ length: 11 - qtdAdultos }, (_, i) => i).map((n) => (
-                    <option key={n} value={n}>
-                      {n === 0 ? "Nenhuma" : `${n} criança(s)`}
-                    </option>
-                  ))}
-                </select>
-                <span style={{ fontSize: "0.78rem", color: "#888", marginTop: "0.3rem", display: "block" }}>
-                  Máximo de 10 pessoas por confirmação. (Adultos + Crianças selecionadas: {qtdAdultos + qtdCriancas})
-                </span>
-              </div>
-            </>
+            <div style={{ background: "var(--color-cream)", padding: "1.2rem", borderRadius: "8px", border: "1px solid var(--color-border)", marginBottom: "1rem" }}>
+              <p style={{ fontSize: "0.95rem", color: "var(--color-dark)", fontWeight: "bold", marginBottom: "0.5rem" }}>
+                Detalhes do seu Convite:
+              </p>
+              <ul style={{ fontSize: "0.9rem", color: "#555", marginLeft: "1.5rem", marginBottom: "0.8rem", lineHeight: "1.5" }}>
+                <li><strong>{selectedGuest.qtd_adultos}</strong> {selectedGuest.qtd_adultos === 1 ? "Adulto" : "Adultos"} (Incluindo você)</li>
+                {selectedGuest.qtd_criancas > 0 && (
+                  <li><strong>{selectedGuest.qtd_criancas}</strong> {selectedGuest.qtd_criancas === 1 ? "Criança" : "Crianças"}</li>
+                )}
+              </ul>
+              {selectedGuest.acompanhantes && (
+                <div>
+                  <p style={{ fontSize: "0.85rem", color: "#666", marginBottom: "0.2rem" }}>Nomes vinculados:</p>
+                  <p style={{ fontSize: "0.9rem", color: "var(--color-dark)", fontWeight: "500", whiteSpace: "pre-wrap" }}>
+                    {selectedGuest.acompanhantes}
+                  </p>
+                </div>
+              )}
+              <p style={{ fontSize: "0.8rem", color: "#888", marginTop: "1rem", fontStyle: "italic" }}>
+                * A quantidade de pessoas e convidados vinculados não pode ser alterada. Caso haja alguma dúvida ou necessidade de ajuste, por favor, entre em contato com os noivos.
+              </p>
+            </div>
           )}
 
           {/* Observações */}

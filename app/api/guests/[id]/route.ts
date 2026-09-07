@@ -19,6 +19,7 @@ export async function PUT(
         qtd_adultos: body.qtd_adultos !== undefined ? Math.min(Number(body.qtd_adultos), 10) : undefined,
         qtd_criancas: body.qtd_criancas !== undefined ? Number(body.qtd_criancas) : undefined,
         observacao: body.observacao,
+        acompanhantes: body.acompanhantes !== undefined ? body.acompanhantes : undefined,
       },
     });
 
