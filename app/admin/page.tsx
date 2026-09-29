@@ -29,7 +29,7 @@ export default function AdminPage() {
       setLoading(true);
       const [resGuests, resGifts] = await Promise.all([
         fetch("/api/guests"),
-        fetch("/api/gifts"),
+        fetch("/api/gifts?fresh=true"),
       ]);
 
       if (resGuests.ok && resGifts.ok) {

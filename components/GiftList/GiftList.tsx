@@ -130,7 +130,7 @@ export default function GiftList() {
   useEffect(() => {
     async function loadGifts() {
       try {
-        const response = await fetch(`/api/gifts?t=${Date.now()}`);
+        const response = await fetch("/api/gifts");
         if (response.ok) {
           const data = await response.json();
           setGifts(data);

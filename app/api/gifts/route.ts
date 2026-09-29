@@ -52,17 +52,33 @@ const FALLBACK_GIFTS = [
 ];
 
 // GET - Listar presentes
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const { searchParams } = new URL(req.url);
+    const isFresh = searchParams.get("fresh") === "true";
+
     const gifts = await prisma.gift.findMany({
       orderBy: {
         createdAt: "desc",
       },
     });
-    return NextResponse.json(gifts);
+
+    const headers: Record<string, string> = {};
+
+    if (isFresh) {
+      // adm não usa cache
+      headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
+    } else {
+      // guest: Guarda em cache na CDN da Vercel por 1 hora (3600s).
+      // Se passar disso, entrega a versão em cache instantaneamente e revalida em segundo plano (stale-while-revalidate).
+      // Isso evita acordar o Neon a cada visitante e garante carregamento em milissegundos!
+      headers["Cache-Control"] = "public, s-maxage=3600, stale-while-revalidate=86400";
+    }
+
+    return NextResponse.json(gifts, { headers });
   } catch (error) {
     console.warn("Neon offline/idle ou bloqueado por IPv6 local. Retornando presentes para teste...");
-    // Em modo dev, se o banco não for alcançável, retornar a lista fallback para evitar bloquear o dev
+    // rodando o projeto local , se não conectar ao banco, retornar a lista fallback p
     return NextResponse.json(FALLBACK_GIFTS);
   }
 }
